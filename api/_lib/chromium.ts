@@ -16,7 +16,13 @@ async function getPage(isDev: boolean) {
 export async function getScreenshot(html: string, type: FileType, isDev: boolean) {
     const page = await getPage(isDev);
     await page.setViewport({ width: 2048, height: 1170 });
-    await page.setContent(html);
+    await page.setContent(html, { waitUntil: 'networkidle0' });
+    // await page.waitForTimeout(3000);
+    await page.evaluate(async () => {
+        await Promise.all([
+            document.fonts.ready,
+        ]);
+    });
     const file = await page.screenshot({ type });
     return file;
 }
