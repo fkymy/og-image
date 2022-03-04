@@ -45,8 +45,7 @@ function getCss(theme: string, fontSize: string) {
       }
 
     body {
-        background: ${background};
-        background-size: 100px 100px;
+        background: linear-gradient(270deg,#2dd57a,#00babc);
         height: 100vh;
         display: flex;
         text-align: center;
@@ -63,6 +62,17 @@ function getCss(theme: string, fontSize: string) {
 
     code:before, code:after {
         content: '\`';
+    }
+
+    .card {
+        background: ${background};
+        height: 80%;
+        width: 85%;
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        border-radius: 16px;
     }
 
     .logo-wrapper {
@@ -114,7 +124,7 @@ export function getHtml(parsedReq: ParsedRequest) {
         ${getCss(theme, fontSize)}
     </style>
     <body>
-        <div>
+        <div class="card">
             <div class="spacer">
             <div class="heading">${emojify(
                 md ? marked(text) : sanitizeHtml(text)
